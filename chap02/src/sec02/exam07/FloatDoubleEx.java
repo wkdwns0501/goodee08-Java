@@ -8,7 +8,7 @@ public class FloatDoubleEx {
 		
 //		float var1 = 3.14; // 자바 컴파일러는 실수 리터럴을 기본적으로 double 타입으로 해석
 		// double 타입을 float 타입에 바로 넣을 수 없음
-		// F 도는 f를 붙여 float 타입임을 알려줌
+		// F 또는 f를 붙여 float 타입임을 알려줌
 		float var2 = 3.14f;
 		double var3 = 3.14;
 		System.out.println(var2);
