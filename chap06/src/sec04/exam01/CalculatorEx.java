@@ -13,7 +13,7 @@ public class CalculatorEx {
 		double result2 = myCalc.divide(x, y); // int 로 자동 타입 변환
 		System.out.println("result2: " + result2);
 		
-//		double result = myCal?c.divide(10.5, 20.0); //잘못된 매개값 사용;
+//		double result = myCalc.divide(10.5, 20.0); //잘못된 매개값 사용;
 		myCalc.powerOff();
 	}
 }

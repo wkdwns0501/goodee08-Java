@@ -20,7 +20,7 @@ public class Car {
 		this.model = model;
 		this.color = color;
 	}
-	// 주의! 매개변수 이르만 바꾸는 것은 오버로딩이 아님 (타입이 중요)
+	// 주의! 매개변수 이름만 바꾸는 것은 오버로딩이 아님 (타입이 중요)
 //	Car(String color, String model){
 //		this.model = model;
 //		this.color = color;
