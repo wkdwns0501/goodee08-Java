@@ -17,9 +17,9 @@ public class Homework02 {
 		}
 		
 		int total = 0;
-		for (int i = 0; i < inputArray.length; i++) {
-			System.out.print(inputArray[i] + " ");
-			total += inputArray[i];
+		for (int num : inputArray) {
+			System.out.print(num + " ");
+			total += num;
 		}
 		
 		System.out.println("\n총 합 : " + total);
