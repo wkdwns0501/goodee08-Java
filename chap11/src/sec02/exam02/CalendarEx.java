@@ -91,9 +91,9 @@ public class CalendarEx {
 		int minute2 = now2.getMinute();
 		int second = now2.getSecond();
 		
-		System.out.print(hour +"시 ");
-		System.out.print(minute +"분 ");
-		System.out.println(socond +"초 ");
+		System.out.print(hour12 +"시 ");
+		System.out.print(minute2 +"분 ");
+		System.out.println(second +"초 ");
 		
 		System.out.println("===========================");
 		
