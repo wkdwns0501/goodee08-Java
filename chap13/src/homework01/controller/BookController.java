@@ -59,6 +59,7 @@ public class BookController {
     				// 3. 삭제할 도서가 있는 경우 해당 도서를 removeBook에 대입
     				removeBook = bookList.get(i);
     				bookList.remove(i);
+    				break;
     			}
 		}
         // 4. removeBook 객체 반환
@@ -68,7 +69,13 @@ public class BookController {
     public int ascBook(){
 	    // Collections.sort와 Comparable활용
 	    // 책 이름 기준으로 오름차순 정렬 후 1 반환
-    		Collections.sort(bookList, (a, b) -> a.getTitle().compareTo(b.getTitle()));
-    		return 1;
+	    	try {
+	    		Collections.sort(bookList);
+	    		return 1;
+		} catch (Exception e) {
+			return -1;
+		}
+//    	Collections.sort(bookList, (a, b) -> a.getTitle().compareTo(b.getTitle()));
+//    	return 1;
     }
 }

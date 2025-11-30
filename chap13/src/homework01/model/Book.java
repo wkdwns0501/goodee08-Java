@@ -1,6 +1,6 @@
 package homework01.model;
 
-public class Book {
+public class Book implements Comparable<Book> {
 	
 	private String title;
 	private String author;
@@ -51,6 +51,11 @@ public class Book {
 	@Override
 	public String toString() {
 		return title + "(" + author + "), " + category + ", " + price;
+	}
+	
+	@Override
+	public int compareTo(Book other) {
+		return title.compareTo(other.title);
 	}
 	
 }
