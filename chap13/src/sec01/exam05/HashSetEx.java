@@ -56,6 +56,10 @@ public class HashSetEx {
 		
 		// Iterable과 Iterator - 컬렉션 조회 방법의 표준화(=인터페이스)
 		// 여러 종류의 컬렉션 (Iterable)을 같은 방법(Iterator)으로 읽을 수 있음
+		// Iterable : 반복할 수 있는 객체 라는 뜻
+						// 객체를 돌 수 있게 해주는 인터페이스
+						// Iterable<T>를 구현한 클래스는 .iterator() 메소드를 가짐
+		// Iterator : 실제로 요소를 하나씩 꺼내오는 도구 (hasNext(), next()...)
 		
 		// Iterator(반복자)로 모든 요소를 하나씩 가져오기
 		// 컬렉션 요소를 하나씩 순회할 수 있도록 도와주는 인터페이스
