@@ -32,7 +32,11 @@ public interface BoardService {
     // 게시글 수정
     // 수정할 게시글 객체를 전달
     // 수정된 게시글 개수를 반환
-    int update(int no, BoardDTO board);
+    // 기본 수정(update)
+//    int update(int no, BoardDTO board);
+    // 검증 로직 추가 수정(update)
+    BoardDTO selectForUpdate(int no, String inputWriter);
+    int updateWithOriginal(int no, BoardDTO originalBoard, BoardDTO updateBoard);
     
     // 게시글 삭제
     // 삭제할 게시글 번호를 전달

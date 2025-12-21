@@ -1,6 +1,7 @@
 package board.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import board.dao.BoardDAO;
 import board.dto.BoardDTO;
@@ -36,24 +37,53 @@ public class BoardServiceImpl implements BoardService{
         // 게시글 정보를 전달하여 DB에 데이터 등록 요청
         int result = boardDAO.insert(board);
         
-        if (result > 0) {
-            System.out.println("데이터 등록 성공!");
-        } else {
-            System.out.println("데이터 등록 실패!");
-        }
+//        if (result > 0) {
+//            System.out.println("데이터 등록 성공!");
+//        } else {
+//            System.out.println("데이터 등록 실패!");
+//        }
         
         return result;
     }
-
+    
+    // 기본 수정(update)
+//    @Override
+//    public int update(int no, BoardDTO board) {
+//        int result = boardDAO.update(no, board);
+//        
+//        if (result > 0) {
+//            System.out.println("데이터 수정 성공!");
+//        } else {
+//            System.out.println("데이터 수정 실패!");
+//        }
+//        return result;
+//    }
+    
+    // 수정을 위한 조회
     @Override
-    public int update(int no, BoardDTO board) {
-        int result = boardDAO.update(no, board);
-        
-        if (result > 0) {
-            System.out.println("데이터 수정 성공!");
-        } else {
-            System.out.println("데이터 수정 실패!");
+    public BoardDTO selectForUpdate(int no, String inputWriter) {
+        BoardDTO originalBoard = boardDAO.select(no);
+        if (originalBoard == null) return null;
+
+        if (!Objects.equals(originalBoard.getWriter(), inputWriter)) return null;
+
+        return originalBoard;
+    }
+    
+    // 검증 로직 추가 수정(update)
+    @Override
+    public int updateWithOriginal(int no, BoardDTO originalBoard, BoardDTO updateBoard) {
+        if (updateBoard.getTitle() == null 
+                || updateBoard.getTitle().isBlank()) {
+            updateBoard.setTitle(originalBoard.getTitle());
         }
+        if (updateBoard.getContent() == null 
+                || updateBoard.getContent().isBlank()) {
+            updateBoard.setContent(originalBoard.getContent());
+        }
+        updateBoard.setWriter(originalBoard.getWriter());
+        
+        int result = boardDAO.update(no, updateBoard);
         return result;
     }
 

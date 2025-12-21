@@ -55,10 +55,10 @@ public class BoardDAO extends DBconnection{
             System.out.println("게시물 목록 조회 - 예외 발생");
             e.printStackTrace();
         }
-        
         // 4. 게시글 목록 반환
         return boardList;
     }
+    
     /**
      * 게시글 단일 조회
      * @param no
@@ -96,14 +96,13 @@ public class BoardDAO extends DBconnection{
                 board.setUpdDate(rs.getObject("upd_date", LocalDateTime.class));
             } else {
                 // 조회된 게시글이 존재하지 않는 경우
-                System.out.println("해당 번호의 개시글이 존재하지 않습니다.");
+                System.out.println("해당 번호의 게시글이 존재하지 않습니다.");
                 return null;
             }
         } catch (SQLException e) {
             System.out.println("게시글 조회 - 예외 발생");
             e.printStackTrace();
         }
-        
         // 4. 게시글 정보 1건 반환
         return board;
     }
@@ -134,7 +133,6 @@ public class BoardDAO extends DBconnection{
             System.out.println("게시글 등록 - 예외 발생");
             e.printStackTrace();
         }
-        
         return result;
     }
     
@@ -160,7 +158,6 @@ public class BoardDAO extends DBconnection{
             System.out.println("게시글 수정 - 예외 발생");
             e.printStackTrace();
         }
-        
         return result;
     }
     
@@ -182,7 +179,6 @@ public class BoardDAO extends DBconnection{
             System.out.println("게시글 삭제 - 예외 발생");
             e.printStackTrace();
         }
-        
         return result;
     }
     

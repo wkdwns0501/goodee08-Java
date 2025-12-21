@@ -61,7 +61,7 @@ public class Main {
      */
     public static void print(BoardDTO board) {
         if (board == null) {
-            System.out.println("조회할 수 없는 게시글 입니다.");
+//            System.out.println("조회할 수 없는 게시글 입니다.");
             return;
         }
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
@@ -128,7 +128,7 @@ public class Main {
      * 게시글 정보 입력
      * @return
      */
-    public static BoardDTO input() {
+    public static BoardDTO inputForInsert() {
         // 필수 입력값: 제목, 작성자, 내용
         System.out.print("제목: ");
         String title = sc.nextLine();
@@ -148,7 +148,7 @@ public class Main {
     public static void insert() {
         System.out.println("========== 게시글 등록 ==========");
         
-        BoardDTO board = input();
+        BoardDTO board = inputForInsert();
         
         // 게시글 등록 요청
         int result = boardService.insert(board);
@@ -160,6 +160,45 @@ public class Main {
     }
     
     /**
+     * 게시글 기본 수정
+     */
+//    public static void update() {
+//        System.out.println("========== 게시글 수정 ==========");
+//        
+//        System.out.print("게시글 번호: ");
+//        int no = sc.nextInt();
+//        sc.nextLine();
+//
+//        BoardDTO board = input();
+//        board.setNo(no);
+//        
+//        // 게시글 수정 요청
+//        int result = boardService.update(board);
+//        if (result > 0) {
+//            System.out.println("★ 게시글이 수정되었습니다.");
+//        } else {
+//            System.out.println("★ 게시글 수정에 실패하였습니다.");
+//        }
+//    }
+    
+    /**
+     * 게시글 수정 입력
+     * @return
+     */
+    public static BoardDTO inputForUpdate() {
+        System.out.print("새 제목: ");
+        String title = sc.nextLine();
+        System.out.print("새 내용: ");
+        String content = sc.nextLine();
+
+        BoardDTO board = new BoardDTO();
+        board.setTitle(title);
+        board.setContent(content);
+
+        return board;
+    }
+
+    /**
      * 게시글 수정
      */
     public static void update() {
@@ -169,16 +208,20 @@ public class Main {
         int no = sc.nextInt();
         sc.nextLine();
         
-        BoardDTO updateBoard = input();
-        
-        BoardDTO originalBoard = boardService.select(no);
-        
-        if (!originalBoard.getWriter().equals(updateBoard.getWriter())) {
-            System.out.println("작성자가 같지 않아 수정에 실패하였습니다.");
+        System.out.print("작성자 확인 : ");
+        String inputWriter = sc.nextLine();
+
+        BoardDTO originalBoard = boardService.selectForUpdate(no, inputWriter);
+
+        if (originalBoard == null) {
+            System.out.println("작성자가 같지 않거나, 해당 번호의 게시글이 존재하지 않습니다.");
+            System.out.println("★ 게시글 수정에 실패하였습니다.");
             return;
         }
-        
-        int result = boardService.update(no, updateBoard);
+
+        BoardDTO updateBoard = inputForUpdate();
+
+        int result = boardService.updateWithOriginal(no, originalBoard, updateBoard);
         if (result > 0) {
             System.out.println("★ 게시글이 수정되었습니다.");
         } else {
